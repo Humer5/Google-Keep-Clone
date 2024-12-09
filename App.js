@@ -1,8 +1,8 @@
 const form = document.getElementById('authForm');
 
 // Default credentials
-const defaultUsername = 'user123';
-const defaultPassword = 'pass123';
+const defaultUsername = 'admin';
+const defaultPassword = 'password123';
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
