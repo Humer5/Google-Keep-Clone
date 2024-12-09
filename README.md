@@ -1,1 +1,4 @@
-My first project in git
+## Default Login Credentials
+- **Username:** admin
+- **Password:** password123
+

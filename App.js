@@ -1,20 +1,19 @@
 const form = document.getElementById('authForm');
 
+// Default credentials
+const defaultUsername = 'user123';
+const defaultPassword = 'pass123';
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const enteredUsername = document.getElementById('username').value.trim();
+    const enteredPassword = document.getElementById('password').value.trim();
 
-    if (localStorage.getItem(username)) {
-        const storedPassword = localStorage.getItem(username);
-        if (storedPassword === password) {
-            alert('Login successful!');
-        } else {
-            alert('Incorrect password!');
-        }
+    if (enteredUsername === defaultUsername && enteredPassword === defaultPassword) {
+        alert('Login Successful! Redirecting...');
+        window.location.href = 'dashboard.html'; // Simulate redirection to main app/dashboard
     } else {
-        localStorage.setItem(username, password);
-        alert('Signup successful! Please log in.');
+        alert('Invalid Credentials. Please try again.');
     }
 });
