@@ -1,68 +1,61 @@
-let notes = [];
+let tasks = [];
 
-document.getElementById('noteForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+// Render tasks dynamically
+function renderTasks() {
+  const taskList = document.getElementById("notesContainer");
+  taskList.innerHTML = "";
 
-    const title = document.getElementById('noteTitle').value;
-    const content = document.getElementById('noteContent').value;
+  tasks.forEach((task, index) => {
+    const taskDiv = document.createElement("div");
+    taskDiv.className = "note-card";
 
-    const note = {
-        id: Date.now(),
-        title,
-        content,
-        completed: false,
-    };
+    taskDiv.innerHTML = `
+      <h3>${task.title}</h3>
+      <p>${task.content}</p>
+      <div class="actions">
+        <button onclick="editTask(${index})">Edit</button>
+        <button onclick="deleteTask(${index})">Delete</button>
+      </div>
+    `;
 
-    notes.push(note);
-    displayNotes('all');
+    taskList.appendChild(taskDiv);
+  });
+}
 
-    document.getElementById('noteForm').reset();
+// Handle Add Task
+document.getElementById("task-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = document.getElementById("taskTitle").value.trim();
+  const content = document.getElementById("taskContent").value.trim();
+
+  if (title && content) {
+    const task = { title, content };
+    tasks.push(task);
+    renderTasks();
+    e.target.reset();
+  } else {
+    alert("Please fill in both fields!");
+  }
 });
 
-document.querySelectorAll('.filter').forEach(button => {
-    button.addEventListener('click', () => {
-        document.querySelectorAll('.filter').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        displayNotes(button.dataset.filter);
-    });
-});
+// Handle Edit Task
+function editTask(index) {
+  const newTitle = prompt("Enter new title:", tasks[index].title);
+  const newContent = prompt("Enter new content:", tasks[index].content);
 
-function displayNotes(filter) {
-    const notesContainer = document.getElementById('notesContainer');
-    notesContainer.innerHTML = '';
-
-    let filteredNotes = notes;
-    if (filter === 'active') {
-        filteredNotes = notes.filter(note => !note.completed);
-    } else if (filter === 'completed') {
-        filteredNotes = notes.filter(note => note.completed);
-    }
-
-    filteredNotes.forEach(note => {
-        const noteDiv = document.createElement('div');
-        noteDiv.classList.add('note');
-        if (note.completed) noteDiv.classList.add('completed');
-
-        noteDiv.innerHTML = `
-            <h3>${note.title}</h3>
-            <p>${note.content}</p>
-            <button onclick="toggleCompletion(${note.id})">
-                ${note.completed ? 'Mark Active' : 'Mark Completed'}
-            </button>
-            <button onclick="deleteNote(${note.id})">Delete</button>
-        `;
-        notesContainer.appendChild(noteDiv);
-    });
+  if (newTitle && newContent) {
+    tasks[index].title = newTitle;
+    tasks[index].content = newContent;
+    renderTasks();
+  }
 }
 
-function toggleCompletion(id) {
-    notes = notes.map(note => note.id === id ? { ...note, completed: !note.completed } : note);
-    const activeFilter = document.querySelector('.filter.active').dataset.filter;
-    displayNotes(activeFilter);
+// Handle Delete Task
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  renderTasks();
 }
 
-function deleteNote(id) {
-    notes = notes.filter(note => note.id !== id);
-    const activeFilter = document.querySelector('.filter.active').dataset.filter;
-    displayNotes(activeFilter);
-}
+// Initial render
+renderTasks();
+
