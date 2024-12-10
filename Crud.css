@@ -1,15 +1,64 @@
-/* Add additional styling for notes */
-.note-input {
-    margin: 20px 0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-textarea {
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+input, textarea {
     width: 100%;
-    height: 80px;
+    margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 2px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.filters {
+    margin: 15px 0;
+}
+
+.filter {
+    padding: 5px 10px;
     border: 1px solid #ddd;
-    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #f9f9f9;
+}
+
+.filter.active {
+    background: #007bff;
+    color: white;
 }
 
 #notesContainer {
@@ -18,27 +67,17 @@ textarea {
 
 .note {
     background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.note-actions {
-    margin-top: 10px;
-    text-align: right;
-}
-
-.note-actions button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-left: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
-.note-actions button:hover {
-    background: #0056b3;
+.note.completed {
+    background: #e0ffe0;
+    border-color: #28a745;
+    text-decoration: line-through;
+    color: #6c757d;
 }
+

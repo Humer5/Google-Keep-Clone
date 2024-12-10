@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Crud.css">
-    <title>Google Keep Clone - Notes</title>
+    <title>Google Keep Clone - CRUD</title>
+    <link rel="stylesheet" href="crud.css">
 </head>
 <body>
     <div class="container">
-        <h1>My Notes</h1>
-        <div class="note-input">
-            <textarea id="noteContent" placeholder="Write a new note..."></textarea>
-            <button id="addNote">Add Note</button>
+        <h1>Google Keep Clone - Notes</h1>
+        <form id="noteForm">
+            <input type="text" id="noteTitle" placeholder="Enter Note Title" required>
+            <textarea id="noteContent" placeholder="Enter Note Content" rows="5" required></textarea>
+            <button type="submit">Add Note</button>
+        </form>
+        <div class="filters">
+            <button data-filter="all" class="filter active">All</button>
+            <button data-filter="active" class="filter">Active</button>
+            <button data-filter="completed" class="filter">Completed</button>
         </div>
         <div id="notesContainer"></div>
     </div>
-    <script src="Crud.js"></script>
+    <script src="crud.js"></script>
 </body>
 </html>
