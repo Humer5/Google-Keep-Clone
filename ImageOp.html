@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Keep Clone - Add Images</title>
+    <link rel="stylesheet" href="imageOp.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Google Keep Clone</h1>
+        <form id="imageForm">
+            <input type="text" id="noteTitle" placeholder="Enter Note Title" required>
+            <textarea id="noteContent" placeholder="Enter Note Content" rows="5" required></textarea>
+            <input type="file" id="noteImage" accept="image/*" required>
+            <button type="submit">Add Note</button>
+        </form>
+        <div id="notesContainer"></div>
+    </div>
+    <script src="imageOp.js"></script>
+</body>
+</html>
