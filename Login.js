@@ -21,10 +21,10 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
 
 function navigateTo(page) {
     if (page === 'CRUD') {
-        window.location.href = 'CRUD.html'; // Link to CRUD page
+        window.location.href = 'Crud.html'; // Link to CRUD page
     } else if (page === 'ToDo') {
-        window.location.href = 'ToDo.html'; // Link to To-Do page
+        window.location.href = 'todo.html'; // Link to To-Do page
     } else if (page === 'Images') {
-        window.location.href = 'ImageNotes.html'; // Link to Image Notes page
+        window.location.href = 'ImageOp.html'; // Link to Image Notes page
     }
 }
