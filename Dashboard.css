@@ -12,7 +12,7 @@ body {
 
 .dashboard-header {
     text-align: center;
-    background-color: #4a90e2;
+    background-color: black;
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -40,8 +40,4 @@ nav button:hover {
     background-color: #28527a;
 }
 
-main {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
-}
+
