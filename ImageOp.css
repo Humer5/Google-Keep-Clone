@@ -1,6 +1,11 @@
 body {
+<<<<<<< HEAD:todo.css
     font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
+=======
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+>>>>>>> main4:ImageOp.css
     margin: 0;
     display: flex;
     justify-content: center;
@@ -10,6 +15,7 @@ body {
 }
 
 .container {
+<<<<<<< HEAD:todo.css
     background: gray;
     padding: 25px;
     border-radius: 12px;
@@ -26,6 +32,18 @@ h1 {
 
 input, textarea {
     width: 100%;
+=======
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+input, textarea {
+    width: 80%;
+>>>>>>> main4:ImageOp.css
     margin: 10px 0;
     padding: 12px;
     border-radius: 8px;
@@ -41,7 +59,11 @@ input:focus, textarea:focus {
 }
 
 button {
+<<<<<<< HEAD:todo.css
     background-color: black;
+=======
+    background-color: #007bff;
+>>>>>>> main4:ImageOp.css
     color: white;
     padding: 10px 15px;
     border: none;
@@ -56,6 +78,7 @@ button:hover {
     background-color: #0056b3;
 }
 
+<<<<<<< HEAD:todo.css
 .filters {
     margin: 15px 0;
     display: flex;
@@ -132,4 +155,22 @@ button:hover {
 .note button:hover {
     background-color: #e2e6ea;
     color: #0056b3;
+=======
+#notesContainer {
+    margin-top: 20px;
+}
+
+.note {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.note img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+>>>>>>> main4:ImageOp.css
 }
