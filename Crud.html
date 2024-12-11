@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager with CRUD</title>
+  <link rel="stylesheet" href="Crud.css" />
+</head>
+<body>
+  <!-- Main App Container -->
+  <div class="app-container">
+    <!-- Header Section -->
+    <header>
+      Task Manager 
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- Task Entry Form -->
+      <form id="task-form">
+        <input type="text" id="taskTitle" placeholder="Enter task title" />
+        <textarea id="taskContent" placeholder="Enter task description"></textarea>
+        <button type="submit">Add Task</button>
+      </form>
+
+      <!-- Section to Display Tasks -->
+      <div id="notesContainer"></div>
+    </main>
+  </div>
+
+  <script src="Crud.js"></script>
+</body>
+</html>
+
+
