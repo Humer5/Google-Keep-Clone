@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Keep Clone - Add Images</title>
+    <title>Google Keep Clone - Add Notes with Images</title>
     <link rel="stylesheet" href="ImageOp.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Google Keep Clone</h1>
-        <form id="imageForm">
-            <input type="text" id="noteTitle" placeholder="Enter Note Title" required>
-            <textarea id="noteContent" placeholder="Enter Note Content" rows="5" required></textarea>
-            <input type="file" id="noteImage" accept="image/*" required>
-            <button type="submit">Add Note</button>
-        </form>
-        <div id="notesContainer"></div>
+    <div class="app-container">
+        <header>
+            <h3>Notes with Images</h3>
+        </header>
+        <main>
+            <form id="imageForm">
+                <input type="text" id="noteTitle" placeholder="Enter Title" required>
+                <textarea id="noteDescription" placeholder="Enter Description" required></textarea>
+                <input type="file" id="imageInput" accept="image/*" multiple>
+                <button type="button" id="addNoteButton">Add Note</button>
+            </form>
+            <div id="notesGallery"></div>
+        </main>
     </div>
+
+    <!-- Modal for Viewing Images -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" alt="View Note Image">
+        </div>
+    </div>
+
     <script src="ImageOp.js"></script>
 </body>
 </html>
