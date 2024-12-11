@@ -29,7 +29,7 @@
   
   /* Header Section */
   header {
-    background-color: #4a90e2;
+    background-color: black;
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
@@ -74,7 +74,7 @@
     font-size: 1rem;
     font-weight: bold;
     color: #fff;
-    background: #4a90e2;
+    background: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -82,7 +82,7 @@
   }
   
   button:hover {
-    background: #357abd;
+    background: maroon;
   }
   
   /* Task List Section */
