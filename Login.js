@@ -5,8 +5,8 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
     const password = document.getElementById('password').value;
 
     // Default credentials
-    const defaultUsername = "user123";
-    const defaultPassword = "pass123";
+    const defaultUsername = "admin";
+    const defaultPassword = "password123";
 
     if (username === defaultUsername && password === defaultPassword) {
         alert("Login successful!");
