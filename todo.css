@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    background: #ffffff;
+    background: gray;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -20,7 +20,7 @@ body {
 
 h1 {
     margin-bottom: 20px;
-    color: #4a4a4a;
+    color: maroon;
     font-size: 24px;
 }
 
@@ -41,7 +41,7 @@ input:focus, textarea:focus {
 }
 
 button {
-    background-color: #007bff;
+    background-color: black;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -74,12 +74,12 @@ button:hover {
 }
 
 .filter:hover {
-    background: #007bff;
+    background: maroon;
     color: white;
 }
 
 .filter.active {
-    background: #007bff;
+    background: green;
     color: white;
     border: 1px solid #0056b3;
 }
