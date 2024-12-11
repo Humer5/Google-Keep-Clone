@@ -1,19 +1,30 @@
-const form = document.getElementById('authForm');
+document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-// Default credentials
-const defaultUsername = 'admin';
-const defaultPassword = 'password123';
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+    // Default credentials
+    const defaultUsername = "user123";
+    const defaultPassword = "pass123";
 
-    const enteredUsername = document.getElementById('username').value.trim();
-    const enteredPassword = document.getElementById('password').value.trim();
+    if (username === defaultUsername && password === defaultPassword) {
+        alert("Login successful!");
 
-    if (enteredUsername === defaultUsername && enteredPassword === defaultPassword) {
-        alert('Login Successful! Redirecting...');
-        window.location.href = 'dashboard.html'; // Simulate redirection to main app/dashboard
+        // Hide login section and show navigation
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('home-section').style.display = 'block';
     } else {
-        alert('Invalid Credentials. Please try again.');
+        alert("Invalid credentials. Please try again.");
     }
 });
+
+function navigateTo(page) {
+    if (page === 'CRUD') {
+        window.location.href = 'CRUD.html'; // Link to CRUD page
+    } else if (page === 'ToDo') {
+        window.location.href = 'ToDo.html'; // Link to To-Do page
+    } else if (page === 'Images') {
+        window.location.href = 'ImageNotes.html'; // Link to Image Notes page
+    }
+}
