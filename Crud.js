@@ -39,15 +39,15 @@ document.getElementById("task-form").addEventListener("submit", (e) => {
   }
 });
 
-// Handle Edit Task
-function editTask(index) {
-  const taskDiv = document.querySelectorAll('.note-card')[index];
-  const inputTitle = taskDiv.querySelector('input');
-  const textareaContent = taskDiv.querySelector('textarea');
-  inputTitle.removeAttribute('readonly');
-  textareaContent.removeAttribute('readonly');
-  inputTitle.focus();
-}
+// // Handle Edit Task
+// function editTask(index) {
+//   const taskDiv = document.querySelectorAll('.note-card')[index];
+//   const inputTitle = taskDiv.querySelector('input');
+//   const textareaContent = taskDiv.querySelector('textarea');
+//   inputTitle.removeAttribute('readonly');
+//   textareaContent.removeAttribute('readonly');
+//   inputTitle.focus();
+// }
 
 // Update Task Title Inline
 function updateTaskTitle(index, newTitle) {
