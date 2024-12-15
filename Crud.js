@@ -10,8 +10,8 @@ function renderTasks() {
     taskDiv.className = "note-card";
 
     taskDiv.innerHTML = `
-      <h3>${task.title}</h3>
-      <p>${task.content}</p>
+      <input type="text" value="${task.title}" onchange="updateTaskTitle(${index}, this.value)" />
+      <textarea onchange="updateTaskContent(${index}, this.value)">${task.content}</textarea>
       <div class="actions">
         <button onclick="editTask(${index})">Edit</button>
         <button onclick="deleteTask(${index})">Delete</button>
@@ -33,6 +33,7 @@ document.getElementById("task-form").addEventListener("submit", (e) => {
     tasks.push(task);
     renderTasks();
     e.target.reset();
+    console.log('Task added:', task);
   } else {
     alert("Please fill in both fields!");
   }
@@ -40,22 +41,34 @@ document.getElementById("task-form").addEventListener("submit", (e) => {
 
 // Handle Edit Task
 function editTask(index) {
-  const newTitle = prompt("Enter new title:", tasks[index].title);
-  const newContent = prompt("Enter new content:", tasks[index].content);
+  const taskDiv = document.querySelectorAll('.note-card')[index];
+  const inputTitle = taskDiv.querySelector('input');
+  const textareaContent = taskDiv.querySelector('textarea');
+  inputTitle.removeAttribute('readonly');
+  textareaContent.removeAttribute('readonly');
+  inputTitle.focus();
+}
 
-  if (newTitle && newContent) {
-    tasks[index].title = newTitle;
-    tasks[index].content = newContent;
-    renderTasks();
-  }
+// Update Task Title Inline
+function updateTaskTitle(index, newTitle) {
+  console.log('Updating task title:', index, newTitle);
+  tasks[index].title = newTitle;
+  renderTasks();
+}
+
+// Update Task Content Inline
+function updateTaskContent(index, newContent) {
+  console.log('Updating task content:', index, newContent);
+  tasks[index].content = newContent;
+  renderTasks();
 }
 
 // Handle Delete Task
 function deleteTask(index) {
   tasks.splice(index, 1);
+  console.log('Task deleted:', index);
   renderTasks();
 }
 
 // Initial render
 renderTasks();
-
