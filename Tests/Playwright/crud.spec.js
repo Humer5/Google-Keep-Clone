@@ -23,27 +23,33 @@ test.describe('Task Management App', () => {
     expect(taskContent).toBe('This is a test task content.');
   });
 
-  // test('should edit an existing task', async ({ page }) => {
-  //   // Add a task first
-  //   await page.fill('#taskTitle', 'Initial Task');
-  //   await page.fill('#taskContent', 'Initial content.');
-  //   await page.click('#task-form button[type="submit"]');
+  test('should edit an existing task', async ({ page }) => {
+    // Add a task first
+    await page.fill('#taskTitle', 'Initial Task');
+    await page.fill('#taskContent', 'Initial content.');
+    await page.click('#task-form button[type="submit"]');
 
-  //   // Edit the task
-  //   await page.click('.note-card .actions button:nth-child(1)'); // Click "Edit" button
-  //   const inputField = page.locator('.note-card input');
-  //   const textareaField = page.locator('.note-card textarea');
+    // Edit the task
+    await page.click('.note-card .actions button:nth-child(1)'); // Click "Edit" button
+    const inputField = page.locator('.note-card input');
+    const textareaField = page.locator('.note-card textarea');
 
-  //   await inputField.fill('Updated Task Title');
-  //   await textareaField.fill('Updated content.');
-  //   await inputField.dispatchEvent('change');
-  //   await textareaField.dispatchEvent('change');
-  //   await textareaField.dispatchEvent('blur'); // Simulate losing focus
+    // Update fields
+    await inputField.fill('Updated Task Title');
+    await textareaField.fill('Updated content.');
 
-  //   // Wait for content to be updated
-  //   await expect(inputField).toHaveValue('Updated Task Title');
-  //   await expect(textareaField).toHaveValue('Updated content.');
-  // });
+    // Dispatch events to trigger updates
+    await inputField.dispatchEvent('input');
+    await textareaField.dispatchEvent('input');
+    await textareaField.dispatchEvent('blur'); // Simulate losing focus
+
+    // Add a short wait to allow the DOM to update
+    await page.waitForTimeout(100);
+
+    // Verify updated content
+    await expect.poll(() => inputField.inputValue()).toBe('Updated Task Title');
+    await expect.poll(() => textareaField.inputValue()).toBe('Updated content.');
+  });
 
   test('should delete a task', async ({ page }) => {
     // Add a task first
@@ -70,5 +76,3 @@ test.describe('Task Management App', () => {
     await page.click('#task-form button[type="submit"]');
   });
 });
-
-
