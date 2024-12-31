@@ -1,0 +1,139 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: var(--navbar-bg);
+  padding: 0 16px; /* Consistent padding for navbar */
+  height: 64px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: var(--navbar-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  gap: 12px; /* General gap between main sections */
+}
+
+/* Hamburger menu */
+.menu-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-icon .material-icons {
+  font-size: 24px;
+  color: var(--navbar-text);
+}
+
+/* App logo */
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  line-height: 27px;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.app-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.app-logo span {
+  color: var(--navbar-text);
+  font-size: 22px;
+  font-family: "Product Sans", Arial, sans-serif;
+  font-weight: 500;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  flex-grow: 1; /* Allow it to expand */
+  margin: 0 20px; /* Gap around the search bar */
+  max-width: 1200px;
+  padding-left: 10px;
+  padding-right: 30px;
+  background-color: var(--search-bg);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border like original */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Hover effect */
+}
+
+.search-bar input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: var(--navbar-text);
+  background: none;
+  margin-left: 8px;
+}
+
+.search-bar .material-icons {
+  font-size: 20px;
+  color: var(--navbar-text);
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Smaller gap between action buttons */
+}
+
+.action-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.action-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.action-buttons .material-icons {
+  font-size: 24px;
+  color: var(--navbar-text);
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Themes */
+:root {
+  --navbar-bg: #ffffff;
+  --navbar-text: #202124;
+  --search-bg: #f1f3f4;
+}
+
+[data-theme="dark"] {
+  --navbar-bg: #202124;
+  --navbar-text: #ffffff;
+  --search-bg: #303134;
+}
