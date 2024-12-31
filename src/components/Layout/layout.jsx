@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/navbar";
-// import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar/sidebar";
 import "../../styles/layout.css"; // Add styles for the layout if needed
 
 const Layout = ({ children }) => {
@@ -10,6 +10,9 @@ const Layout = ({ children }) => {
         <main class="main-content">
           {children}
         </main>
+        <div class="layout-container">
+      {/* Navbar at the top */}
+      <Sidebar />
       </div>
     // </div>
   );

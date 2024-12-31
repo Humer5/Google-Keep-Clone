@@ -1,0 +1,70 @@
+/* Sidebar Container */
+.sidebar-container {
+  position: fixed;
+  top: 64px; /* Matches the navbar height */
+  left: 0;
+  height: calc(100vh - 60px); /* Full viewport height minus navbar */
+  width: 64px; /* Collapsed width */
+  background-color: var(--sidebar-bg);
+  transition: width 0.3s ease;
+  z-index: 999;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.sidebar-container:hover {
+  width: 220px; /* Expand on hover */
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+}
+
+/* Sidebar Items */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 8px;
+  width: 100%;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-item .material-icons {
+  font-size: 24px;
+}
+
+.sidebar-item .item-label {
+  display: none;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sidebar-container:hover .item-label {
+  display: block; /* Show labels when expanded */
+}
+
+/* Themes */
+:root {
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #202124;
+}
+
+[data-theme="dark"] {
+  --sidebar-bg: #202124;
+  --sidebar-text: #ffffff;
+}
