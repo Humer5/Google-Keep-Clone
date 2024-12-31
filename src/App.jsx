@@ -1,19 +1,52 @@
-import Navbar from "./components/Navbar/navbar.jsx";
-// import "./styles/App.css"; 
+import { createSignal } from "solid-js";
+import Layout from "./components/Layout/layout";
 
-function App() {
+
+// Sample content for demonstration
+const App = () => {
+  const [notes, setNotes] = createSignal([
+    { id: 1, content: "First note", completed: false },
+    { id: 2, content: "Second note", completed: false },
+  ]);
+
   return (
-    <div class="app-container">
-      {/* Navbar Component */}
-      <Navbar />
-
+    <Layout>
       {/* Main Content Area */}
-      <main class="main-content">
-        <p>Welcome to your Google Keep Clone!</p>
-        {/* Add other components like Sidebar, Notes List here */}
-      </main>
-    </div>
+      <div class="notes-container">
+        {/* Notes input box */}
+        <div class="note-input">
+          <textarea placeholder="Take a note..." />
+          <div class="note-actions">
+            <button>
+              <span class="material-icons">check_box</span>
+            </button>
+            <button>
+              <span class="material-icons">brush</span>
+            </button>
+            <button>
+              <span class="material-icons">image</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Notes list */}
+        <div class="notes-list">
+          {notes().length > 0 ? (
+            notes().map((note) => (
+              <div class="note-item" key={note.id}>
+                <p>{note.content}</p>
+              </div>
+            ))
+          ) : (
+            <div class="empty-state">
+              <span class="material-icons">lightbulb</span>
+              <p>Notes that you add appear here</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </Layout>
   );
-}
+};
 
 export default App;
