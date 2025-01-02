@@ -1,5 +1,5 @@
 import { createSignal, onMount } from "solid-js";
-import logo from "../../assets/keep_2020q4_48dp.png"; // Replace with your logo path
+import logo from "../../assets/keep_logo.png"; // Replace with your logo path
 import "../../styles/navbar.css";
 
 

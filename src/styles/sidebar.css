@@ -1,9 +1,8 @@
 /* Sidebar Container */
 .sidebar-container {
   position: fixed;
-  top: 64px; /* Matches the navbar height */
   left: 0;
-  height: calc(100vh - 60px); /* Full viewport height minus navbar */
+  height: calc(100vh - 68px); 
   width: 64px; /* Collapsed width */
   background-color: var(--sidebar-bg);
   transition: width 0.3s ease;
