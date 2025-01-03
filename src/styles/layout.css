@@ -1,33 +1,41 @@
-/* Layout container for navbar, sidebar, and main content */
+
+/* Layout Container */
 .layout-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  /* Content wrapper for sidebar and main content */
-  .content-wrapper {
-    display: flex;
-    flex: 1;
-  }
-  
-  /* Sidebar
-  .sidebar {
-    width: 250px;
-    background-color: var(--sidebar-background);
-    padding: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  } */
-  
-  /* Main Content */
-  .main-content {
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--layout-bg);
+  /* background-image: url(Google-Keep-Clone\src\assets\light_bulb.png); */
+  color: var(--layout-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Content Wrapper (Sidebar + Main Content) */
+.content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden; /* Prevent overflow due to large content */
+}
+
+.main-content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between NoteTextbox and children */
+}
+
+/* Themes */
+:root {
+  --layout-bg: #ffffff;
+  --layout-text: #202124;
+  --content-bg: #f1f3f4;
+  --content-text: #202124;
+}
+
+[data-theme="dark"] {
+  --layout-bg: #202124;
+  --layout-text: #e8eaed;
+  --content-bg: #303134;
+  --content-text: #e8eaed;
+}

@@ -1,0 +1,60 @@
+/* Container styling for the textbox and icons */
+.note-textbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2d2f31;
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    height: 30px;
+    margin: 20px auto;
+    color: #e8eaed;
+  }
+  
+  /* Textbox styling */
+  .note-textbox {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: #e8eaed;
+    font-size: 16px;
+    outline: white;
+    margin-right: 12px;
+  }
+  
+  /* Placeholder color for the textbox */
+  .note-textbox::placeholder {
+    color: #b0b3b8 ;
+    font-size: 16px ;
+    
+  }
+  
+  /* Icon container styling */
+  .note-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Icon button styling */
+  .note-icon-button {
+    background: none;
+    border: none;
+    color: #b0b3b8;
+    cursor: pointer;
+    font-size: 20px;
+   
+  }
+  
+  .note-icon-button:hover {
+    color: #ffffff;
+  }
+  
+  /* Google Material Outlined font styling */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+    font-size: 25px;
+  }
+  

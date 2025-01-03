@@ -6,7 +6,7 @@
   padding: 0 16px; /* Consistent padding for navbar */
   height: 68px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  color: var(--navbar-text);
+  color: var(--icon-text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   gap: 12px; /* General gap between main sections */
 }
@@ -27,9 +27,9 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.menu-icon .material-icons {
+.menu-icon .material-symbols-outlined {
   font-size: 24px;
-  color: var(--navbar-text);
+  color: var(--icon-text-color);
 }
 
 /* App logo */
@@ -48,7 +48,7 @@
 }
 
 .app-logo span {
-  color: var(--navbar-text);
+  color: var(--icon-text-color);
   font-size: 22px;
   font-family: "Product Sans", Arial, sans-serif;
   font-weight: 500;
@@ -58,15 +58,14 @@
 .search-bar {
   display: flex;
   align-items: center;
-  height: 48px;
-  flex-grow: 1; /* Allow it to expand */
-  margin: 0 20px; /* Gap around the search bar */
-  max-width: 1200px;
-  padding-left: 10px;
-  padding-right: 30px;
   background-color: var(--search-bg);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border like original */
+  font-family: "Google sans", Roboto, Arial, Helvetica, sans-serif;
+  height: 46px;
+  margin-left: 80px;
+  margin-right: 300px;
+  width: 720px;
+  border-radius: 5px;
+  border-color: rgba(255, 255, 255, 0.87); /* Subtle border like original */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -80,14 +79,15 @@
   border: none;
   outline: none;
   font-size: 18px;
-  color: var(--navbar-text);
+  color: var(--icon-text-color);
   background: none;
   margin-left: 8px;
 }
 
-.search-bar .material-icons {
+.search-bar .material-symbols-outlined {
+  padding-left: 10px;
   font-size: 20px;
-  color: var(--navbar-text);
+  color: var(--icon-text-color);
 }
 
 /* Action buttons */
@@ -114,12 +114,13 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.action-buttons .material-icons {
+.action-buttons .material-symbols-outlined {
   font-size: 24px;
-  color: var(--navbar-text);
+  color: var(--icon-text-color);
 }
 
 .profile-img {
+  margin-left: 5px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -128,12 +129,12 @@
 /* Themes */
 :root {
   --navbar-bg: #ffffff;
-  --navbar-text: #202124;
+  --icon-text-color: #202124; /* Light mode text and icon color */
   --search-bg: #f1f3f4;
 }
 
 [data-theme="dark"] {
   --navbar-bg: #202124;
-  --navbar-text: #ffffff;
+  --icon-text-color: #e8eaed; /* Dark mode text and icon color */
   --search-bg: #303134;
 }

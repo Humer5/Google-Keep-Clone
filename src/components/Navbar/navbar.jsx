@@ -2,8 +2,7 @@ import { createSignal, onMount } from "solid-js";
 import logo from "../../assets/keep_logo.png"; // Replace with your logo path
 import "../../styles/navbar.css";
 
-
-const Navbar = () => {
+const Navbar = ({onMenuClick}) => {
   // Theme state with localStorage sync
   const [theme, setTheme] = createSignal("light");
 
@@ -25,8 +24,8 @@ const Navbar = () => {
   return (
     <div class="navbar">
       {/* Hamburger Menu */}
-      <div class="menu-icon">
-        <span class="material-icons">menu</span>
+      <div class="menu-icon" onClick={onMenuClick}>
+        <span class="material-symbols-outlined">menu</span>
       </div>
 
       {/* Logo */}
@@ -37,23 +36,23 @@ const Navbar = () => {
 
       {/* Search Bar */}
       <div class="search-bar">
-        <span class="material-icons">search</span>
+        <span class="material-symbols-outlined">search</span>
         <input type="text" placeholder="Search" />
       </div>
 
       {/* Action Buttons */}
       <div class="action-buttons">
         <button>
-          <span class="material-icons">refresh</span>
+          <span class="material-symbols-outlined">refresh</span>
         </button>
         <button>
-          <span class="material-icons">view_list</span>
+          <span class="material-symbols-outlined">view_list</span>
         </button>
         <button>
-          <span class="material-icons">settings</span>
+          <span class="material-symbols-outlined">settings</span>
         </button>
         <button class="theme-toggle-btn" onClick={toggleTheme}>
-          <span class="material-icons">
+          <span class="material-symbols-outlined">
             {theme() === "light" ? "dark_mode" : "light_mode"}
           </span>
         </button>

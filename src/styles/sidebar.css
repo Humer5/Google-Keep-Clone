@@ -1,17 +1,23 @@
 /* Sidebar Container */
 .sidebar-container {
   position: fixed;
+  top: 60px; 
   left: 0;
-  height: calc(100vh - 68px); 
-  width: 64px; /* Collapsed width */
+  height: calc(100% - 60px); /* Subtract navbar height to fill the rest of the screen */
+  width: 64px; /* Default collapsed width */
   background-color: var(--sidebar-bg);
   transition: width 0.3s ease;
   z-index: 999;
-  overflow: hidden; /* Prevent scrolling */
+  margin-top: 10px;
+  border-right: 2px solid var(--sidebar-border); /* Solid border at the right end */
+  box-sizing: border-box; /* Ensure border doesn't affect the width */
+
 }
 
-.sidebar-container:hover {
-  width: 220px; /* Expand on hover */
+/* Sidebar Expanded on Hover */
+.sidebar-container:hover,
+.sidebar-container.expanded {
+  width: 250px; /* Expanded width */
 }
 
 /* Sidebar */
@@ -19,51 +25,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 16px;
+  padding-top: 10px;
 }
 
 /* Sidebar Items */
 .sidebar-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 8px;
   width: 100%;
+  gap: 16px;
+  padding: 12px 16px;
+  
   cursor: pointer;
   color: var(--sidebar-text);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Active Sidebar Item */
 .sidebar-item.active {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgb(254,239,195); 
+  color: #202124; /* Dark text for active state */
+  border-radius: 8px;
 }
 
-.sidebar-item .material-icons {
+/* Sidebar Item Icons */
+.sidebar-item .material-symbols-outlined {
+  padding-left: 20px;
   font-size: 24px;
+  color: var(--sidebar-text);
 }
 
+/* Sidebar Item Labels */
 .sidebar-item .item-label {
   display: none;
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
+  color: var(--sidebar-text);
 }
 
 .sidebar-container:hover .item-label {
-  display: block; /* Show labels when expanded */
+  display: block;
 }
 
-/* Themes */
+/* Light Mode */
 :root {
   --sidebar-bg: #ffffff;
-  --sidebar-text: #202124;
+  --sidebar-text: #202124; /* Light mode text color */
 }
 
+/* Dark Mode */
 [data-theme="dark"] {
   --sidebar-bg: #202124;
-  --sidebar-text: #ffffff;
+  --sidebar-text: #e8eaed; /* Dark mode text color */
+}
+
+/* Active state in Dark Mode */
+[data-theme="dark"] .sidebar-item.active {
+  background-color: rgb(65,51,28); /* Gold for dark mode active state */
+  color: #e8eaed; /* Light text color in dark mode */
 }
