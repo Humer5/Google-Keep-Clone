@@ -1,18 +1,21 @@
-import { createSignal, onCleanup } from "solid-js"; // Import Solid.js signals
+import { createSignal, onMount } from "solid-js";
 import "../../styles/notetextbox.css";
 
 function NoteTextbox() {
-  // Step 1: Track the input value using a signal (state variable)
-  const [note, setNote] = createSignal(localStorage.getItem("note") || ""); // Load from localStorage or default to empty
+  const [hoveredIcon, setHoveredIcon] = createSignal(""); // Tracks the currently hovered icon
+  const [tooltips, setTooltips] = createSignal({
+    check_box: "New list",
+    brush: "New note with drawing",
+    image: "New note with image",
+  });
 
-  // Step 2: Save the note to localStorage whenever it changes
-  const handleNoteChange = (event) => {
-    const newNote = event.target.value;
-    setNote(newNote);
-    localStorage.setItem("note", newNote); // Save the note to localStorage
-  };
-
-  // Step 3: Load the initial value from localStorage on mount (already handled in line 5)
+  // Load tooltips from localStorage on mount
+  onMount(() => {
+    const savedTooltips = localStorage.getItem("tooltips");
+    if (savedTooltips) {
+      setTooltips(JSON.parse(savedTooltips));
+    }
+  });
 
   return (
     <div class="note-textbox-container">
@@ -20,19 +23,44 @@ function NoteTextbox() {
         type="text"
         placeholder="Take a note..."
         class="note-textbox"
-        value={note()} // Bind the input value to the state variable
-        onInput={handleNoteChange} // Update the note on input change
       />
       <div class="note-icons">
-        <button class="note-icon-button">
-          <span class="material-symbols-outlined">check_box</span>
-        </button>
-        <button class="note-icon-button">
-          <span class="material-symbols-outlined">edit</span>
-        </button>
-        <button class="note-icon-button">
-          <span class="material-symbols-outlined">image</span>
-        </button>
+        <div class="icon-wrapper">
+          <button
+            class="note-icon-button"
+            onMouseEnter={() => setHoveredIcon("check_box")}
+            onMouseLeave={() => setHoveredIcon("")}
+          >
+            <span class="material-symbols-outlined">check_box</span>
+          </button>
+          {hoveredIcon() === "check_box" && (
+            <div class="tooltip">{tooltips().check_box}</div>
+          )}
+        </div>
+        <div class="icon-wrapper">
+          <button
+            class="note-icon-button"
+            onMouseEnter={() => setHoveredIcon("brush")}
+            onMouseLeave={() => setHoveredIcon("")}
+          >
+            <span class="material-symbols-outlined">brush</span>
+          </button>
+          {hoveredIcon() === "brush" && (
+            <div class="tooltip">{tooltips().brush}</div>
+          )}
+        </div>
+        <div class="icon-wrapper">
+          <button
+            class="note-icon-button"
+            onMouseEnter={() => setHoveredIcon("image")}
+            onMouseLeave={() => setHoveredIcon("")}
+          >
+            <span class="material-symbols-outlined">image</span>
+          </button>
+          {hoveredIcon() === "image" && (
+            <div class="tooltip">{tooltips().image}</div>
+          )}
+        </div>
       </div>
     </div>
   );

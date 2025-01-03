@@ -46,7 +46,7 @@ const Navbar = ({onMenuClick}) => {
           <span class="material-symbols-outlined">refresh</span>
         </button>
         <button>
-          <span class="material-symbols-outlined">view_list</span>
+          <span class="material-symbols-outlined">view_agenda</span>
         </button>
         <button>
           <span class="material-symbols-outlined">settings</span>
@@ -64,7 +64,9 @@ const Navbar = ({onMenuClick}) => {
           />
         </button>
       </div>
+      
     </div>
+    
   );
 };
 

@@ -17,7 +17,7 @@ const Sidebar = ({isExpanded}) => {
           class={`sidebar-item ${activeItem() === "Notes" ? "active" : ""}`}
           onClick={() => handleItemClick("Notes")}
         >
-          <span class="material-symbols-outlined">lightbulb</span>
+          <span class="material-symbols-outlined">lightbulb_2</span>
           <span class="item-label">Notes</span>
         </div>
         <div

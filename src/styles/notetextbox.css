@@ -1,60 +1,99 @@
-/* Container styling for the textbox and icons */
+/* Define theme variables for borders */
+:root {
+    --note-bg: #ffffff; /* Light mode background */
+    --note-text: #202124; /* Light mode text color */
+    --note-placeholder: black; /* Light mode placeholder color */
+    --note-border: #d1d1d1; /* Light mode border color */
+}
+
+[data-theme="dark"] {
+    --note-bg: #202124; /* Dark mode background */
+    --note-text: #e8eaed; /* Dark mode text color */
+    --note-placeholder: #b0b3b8; /* Dark mode placeholder color */
+    --note-border: #444; /* Dark mode border color */
+}
+
 .note-textbox-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #2d2f31;
+    background-color: var(--note-bg);
     border-radius: 8px;
     padding: 8px 16px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    width: 600px;
+    width: 550px;
     height: 30px;
-    margin: 20px auto;
-    color: #e8eaed;
-  }
-  
-  /* Textbox styling */
-  .note-textbox {
+    margin-top: 18px;
+    margin-left: 500px;
+    outline: none;
+    border: 1px solid var(--note-border); /* Apply theme-based border */
+    color: var(--note-text);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.note-textbox {
     flex: 1;
     background-color: transparent;
     border: none;
-    color: #e8eaed;
+    color: var(--note-text);
     font-size: 16px;
-    outline: white;
+    outline: none;
     margin-right: 12px;
-  }
-  
-  /* Placeholder color for the textbox */
-  .note-textbox::placeholder {
-    color: #b0b3b8 ;
-    font-size: 16px ;
-    
-  }
-  
-  /* Icon container styling */
-  .note-icons {
+}
+
+.note-textbox::placeholder {
+    color: var(--note-placeholder);
+    font-size: 16px;
+    gap: 15px;
+}
+
+.note-icons {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
   }
   
-  /* Icon button styling */
+  .icon-wrapper {
+    position: relative; /* Establish relative positioning for tooltips */
+  }
+  
+  .tooltip {
+    position: absolute;
+    top: 40px; /* Adjust as needed to appear below the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(70, 70, 70);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    pointer-events: none;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
   .note-icon-button {
     background: none;
     border: none;
-    color: #b0b3b8;
+    color: var(--note-placeholder);
     cursor: pointer;
     font-size: 20px;
-   
   }
   
   .note-icon-button:hover {
-    color: #ffffff;
-  }
-  
-  /* Google Material Outlined font styling */
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-    font-size: 25px;
+    color: var(--note-text);
   }
   
