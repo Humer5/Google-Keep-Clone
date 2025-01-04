@@ -18,13 +18,13 @@ const App = () => {
           <textarea placeholder="Take a note..." />
           <div class="note-actions">
             <button>
-              <span class="material-icons">check_box</span>
+              <span class="material-symbols-outlined">check_box</span>
             </button>
             <button>
-              <span class="material-icons">brush</span>
+              <span class="material-symbols-outlined">brush</span>
             </button>
             <button>
-              <span class="material-icons">image</span>
+              <span class="material-symbols-outlined">image</span>
             </button>
           </div>
         </div>
@@ -39,7 +39,7 @@ const App = () => {
             ))
           ) : (
             <div class="empty-state">
-              <span class="material-icons">lightbulb</span>
+              <span class="material-symbols-outlined">lightbulb</span>
               <p>Notes that you add appear here</p>
             </div>
           )}

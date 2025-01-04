@@ -1,99 +1,120 @@
-/* Define theme variables for borders */
-:root {
-    --note-bg: #ffffff; /* Light mode background */
-    --note-text: #202124; /* Light mode text color */
-    --note-placeholder: black; /* Light mode placeholder color */
-    --note-border: #d1d1d1; /* Light mode border color */
-}
-
-[data-theme="dark"] {
-    --note-bg: #202124; /* Dark mode background */
-    --note-text: #e8eaed; /* Dark mode text color */
-    --note-placeholder: #b0b3b8; /* Dark mode placeholder color */
-    --note-border: #444; /* Dark mode border color */
-}
-
 .note-textbox-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--note-bg);
-    border-radius: 8px;
-    padding: 8px 16px;
-    width: 550px;
-    height: 30px;
-    margin-top: 18px;
-    margin-left: 500px;
-    outline: none;
-    border: 1px solid var(--note-border); /* Apply theme-based border */
-    color: var(--note-text);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--note-bg);
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 550px;
+  height: 30px;
+  margin-top: 18px;
+  margin-left: 500px;
+  outline: none;
+  border: 2px solid var(--note-border);
+  color: var(--note-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: height 0.2s ease, padding 0.2s ease;
+  
+}
+
+.note-textbox-container.expanded {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  height: auto;
+  width: 600px;
+  cursor: default;
+}
+
+.note-title {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--note-text);
+  font-size: 16px;
+  margin-bottom: 8px;
+  outline: none;
 }
 
 .note-textbox {
-    flex: 1;
-    background-color: transparent;
-    border: none;
-    color: var(--note-text);
-    font-size: 16px;
-    outline: none;
-    margin-right: 12px;
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  color: var(--note-text);
+  font-size: 16px;
+  font-family: "Roboto", Arial, sans-serif; /* Updated font family */
+  outline: none;
+  resize: none;
+  width: 100%;
+  margin-right: 12px;
+  margin-top: 5px; /* Adjust placeholder position */
 }
 
 .note-textbox::placeholder {
-    color: var(--note-placeholder);
-    font-size: 16px;
-    gap: 15px;
+  color: var(--note-placeholder);
+  font-size: 16px;
+  padding-top: 10px;
+  font-family: "Roboto", Arial, sans-serif; /* Updated font family for placeholder */
 }
 
 .note-icons {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.note-icon-button {
+  background: none;
+  border: none;
+  color: var(--note-placeholder);
+  cursor: pointer;
+  font-size: 20px;
+  position: relative;
+}
+
+.note-icon-button:hover {
+  color: var(--note-text);
+}
+
+.icon-wrapper {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(70, 70, 70);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  pointer-events: none;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
   }
-  
-  .icon-wrapper {
-    position: relative; /* Establish relative positioning for tooltips */
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
-  
-  .tooltip {
-    position: absolute;
-    top: 40px; /* Adjust as needed to appear below the icon */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgb(70, 70, 70);
-    color: #fff;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    pointer-events: none;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateX(-50%) translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  }
-  
-  .note-icon-button {
-    background: none;
-    border: none;
-    color: var(--note-placeholder);
-    cursor: pointer;
-    font-size: 20px;
-  }
-  
-  .note-icon-button:hover {
-    color: var(--note-text);
-  }
-  
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--note-text);
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 250px; /* Push "Close" button to the far right */
+}
