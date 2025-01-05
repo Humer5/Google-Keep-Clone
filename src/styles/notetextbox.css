@@ -56,6 +56,7 @@
   font-size: 16px;
   padding-top: 10px;
   font-family: "Roboto", Arial, sans-serif; /* Updated font family for placeholder */
+  
 }
 
 .note-icons {
@@ -117,4 +118,46 @@
   cursor: pointer;
   font-size: 14px;
   margin-left: 250px; /* Push "Close" button to the far right */
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.pin-note-button {
+  background: none;
+  border: none;
+  color: var(--note-text);
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 8px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.2s ease;
+}
+
+.pin-note-button.pinned {
+  color: var(--pinned-color, gold); /* Use a gold color for pinned notes */
+}
+
+.pin-note-button:hover {
+  color: var(--note-hover, #ccc); /* Highlight color on hover */
+}
+
+/* Add fallback colors for light/dark themes */
+:root {
+  /* --note-text: black; */
+  --pinned-color: gold;
+  --note-hover: #888;
+}
+
+.dark-mode {
+  /* --note-text: white; */
+  --pinned-color: gold;
+  --note-hover: rgba(255, 255, 255, 0.8);
 }
