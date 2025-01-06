@@ -2,6 +2,8 @@ import { createSignal } from "solid-js";
 import Navbar from "../Navbar/navbar";
 import Sidebar from "../Sidebar/sidebar";
 import NoteTextbox from "../NoteTextbox/NoteTextbox";
+import Notes from "../Sidebar/SB-features/notes";
+
 import "../../styles/layout.css";
 
 const Layout = ({ children }) => {
@@ -24,7 +26,7 @@ const Layout = ({ children }) => {
         <main class="main-content">
           {/* NoteTextbox Component */}
           <NoteTextbox />
-          
+          <Notes/>
           {/* Additional children content */}
           {/* {children} */}
         </main>
