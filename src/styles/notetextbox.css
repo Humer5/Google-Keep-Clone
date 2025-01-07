@@ -149,6 +149,48 @@
   color: var(--note-hover, #ccc); /* Highlight color on hover */
 }
 
+.list-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.list-item-input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.add-list-item {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.uploaded-image-preview {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.uploaded-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+
 /* Add fallback colors for light/dark themes */
 :root {
   /* --note-text: black; */

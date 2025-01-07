@@ -1,0 +1,88 @@
+:root {
+  /* Light theme variables */
+  --bg-color: #fff;
+  --text-color: #000;
+  --note-bg-color: #fff;
+  --note-shadow: rgba(0, 0, 0, 0.2);
+  --hover-transform: translateY(-4px);
+  --pin-color: gold;
+  --empty-notes-color: #aaa;
+}
+
+[data-theme="dark"] {
+  /* Dark theme variables */
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --note-bg-color: #1e1e1e;
+  --note-shadow: rgba(255, 255, 255, 0.1);
+  --hover-transform: translateY(-4px);
+  --pin-color: #ffd700;
+  --empty-notes-color: #666;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-left: 100px;
+}
+
+.note-card {
+  background-color: var(--note-bg-color);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px var(--note-shadow);
+  padding: 10px;
+  width: 240px;
+  position: relative;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.note-card:hover {
+  transform: var(--hover-transform);
+}
+
+.note-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.note-content {
+  font-size: 14px;
+  margin-bottom: 16px;
+  overflow-x: hidden;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.note-action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.note-action-button.pin-button.active {
+  color: var(--pin-color);
+}
+
+.empty-notes {
+  display: block;
+  position: fixed;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--empty-notes-color);
+  text-align: center;
+  width: 100%;
+}

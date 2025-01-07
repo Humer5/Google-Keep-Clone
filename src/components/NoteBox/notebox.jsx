@@ -1,12 +1,14 @@
 import { createSignal, onCleanup } from "solid-js";
 import "../../styles/notetextbox.css";
 
-function NoteTextbox() {
+function NoteBox() {
   const [isExpanded, setIsExpanded] = createSignal(false); // Tracks expansion
   const [title, setTitle] = createSignal(""); // Title of the note
   const [noteContent, setNoteContent] = createSignal(""); // Content of the note
   const [isPinned, setIsPinned] = createSignal(false); // Tracks if the note is pinned
   const [hoveredIcon, setHoveredIcon] = createSignal(""); // Tracks hovered icon
+  const [uploadedImage, setUploadedImage] = createSignal(null); // Tracks the uploaded image
+
   const [tooltips, setTooltips] = createSignal({
     check_box: "New list",
     brush: "New note with drawing",
@@ -22,17 +24,19 @@ function NoteTextbox() {
   const handleExpand = () => setIsExpanded(true);
 
   const handleCollapse = () => {
-    if (title().trim() || noteContent().trim()) {
+    if (title().trim() || noteContent().trim() || uploadedImage()) {
       const notes = JSON.parse(localStorage.getItem("notes")) || [];
       const newNote = {
         title: title(),
         content: noteContent(),
+        image: uploadedImage(),
         pinned: isPinned(),
       };
       localStorage.setItem("notes", JSON.stringify([...notes, newNote]));
     }
     setTitle("");
     setNoteContent("");
+    setUploadedImage(null);
     setIsPinned(false);
     setIsExpanded(false);
   };
@@ -52,6 +56,23 @@ function NoteTextbox() {
   onCleanup(() => {
     document.removeEventListener("click", handleOutsideClick);
   });
+
+  // Handle image upload
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setUploadedImage(reader.result); // Save the base64 string of the image
+      };
+      reader.readAsDataURL(file); // Convert file to base64 string
+    }
+  };
+
+  // Trigger file input on Image icon click
+  const handleAddImage = () => {
+    document.getElementById("image-upload-input").click();
+  };
 
   return (
     <div
@@ -85,6 +106,18 @@ function NoteTextbox() {
         onInput={(e) => setNoteContent(e.target.value)}
         onClick={!isExpanded() ? handleExpand : undefined}
       />
+
+      {/* Display uploaded image */}
+      {uploadedImage() && (
+        <div class="uploaded-image-preview">
+          <img
+            src={uploadedImage()}
+            alt="Uploaded content"
+            class="uploaded-image"
+          />
+        </div>
+      )}
+
       <div class="note-icons">
         {!isExpanded() ? (
           <>
@@ -94,7 +127,12 @@ function NoteTextbox() {
                 onMouseEnter={() => setHoveredIcon(icon)}
                 onMouseLeave={() => setHoveredIcon("")}
               >
-                <button class="note-icon-button">
+                <button
+                  class="note-icon-button"
+                  onClick={
+                    icon === "image" ? handleAddImage : undefined /* Add other actions */
+                  }
+                >
                   <span class="material-symbols-outlined">{icon}</span>
                 </button>
                 {hoveredIcon() === icon && (
@@ -105,7 +143,7 @@ function NoteTextbox() {
           </>
         ) : (
           <>
-            {[
+            {[ 
               "notifications",
               "person_add",
               "palette",
@@ -118,7 +156,14 @@ function NoteTextbox() {
                 onMouseEnter={() => setHoveredIcon(icon)}
                 onMouseLeave={() => setHoveredIcon("")}
               >
-                <button class="note-icon-button expanded-icons">
+                <button
+                  class="note-icon-button expanded-icons"
+                  onClick={
+                    icon === "image"
+                      ? handleAddImage
+                      : undefined /* Add other actions */
+                  }
+                >
                   <span class="material-symbols-outlined">{icon}</span>
                 </button>
                 {hoveredIcon() === icon && (
@@ -132,8 +177,17 @@ function NoteTextbox() {
           </>
         )}
       </div>
+
+      {/* Hidden file input for image upload */}
+      <input
+        type="file"
+        id="image-upload-input"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={handleImageUpload}
+      />
     </div>
   );
 }
 
-export default NoteTextbox;
+export default NoteBox;
