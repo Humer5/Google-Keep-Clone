@@ -1,9 +1,12 @@
-import { createSignal, createEffect } from "solid-js";
+import { createSignal, createEffect, onCleanup } from "solid-js";
 import "../../../styles/note-adder.css";
 
 function NoteAdder() {
   const [notes, setNotes] = createSignal([]);
   const [hoveredNote, setHoveredNote] = createSignal(null);
+  const [editingNoteIndex, setEditingNoteIndex] = createSignal(null);
+  const [editContent, setEditContent] = createSignal("");
+  const [viewingImage, setViewingImage] = createSignal(null);
 
   // Load notes from localStorage on component mount
   createEffect(() => {
@@ -11,11 +14,29 @@ function NoteAdder() {
     setNotes(savedNotes);
   });
 
-  const handlePin = (index) => {
+  // ✅ Listen for custom event from NoteBox.jsx to update notes in real-time
+  const updateNotesFromEvent = (event) => {
+    setNotes(event.detail);
+  };
+
+  window.addEventListener("notesUpdated", updateNotesFromEvent);
+
+  // ✅ Cleanup event listener on unmount
+  onCleanup(() => {
+    window.removeEventListener("notesUpdated", updateNotesFromEvent);
+  });
+
+  const handleEdit = (index) => {
+    setEditingNoteIndex(index);
+    setEditContent(notes()[index].content);
+  };
+
+  const saveEdit = (index) => {
     const updatedNotes = [...notes()];
-    updatedNotes[index].pinned = !updatedNotes[index].pinned;
+    updatedNotes[index].content = editContent();
     setNotes(updatedNotes);
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    setEditingNoteIndex(null);
   };
 
   const handleDelete = (index) => {
@@ -24,15 +45,14 @@ function NoteAdder() {
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
 
-  const handleDeleteNote = (noteIndex) => {
-    const notes = JSON.parse(localStorage.getItem("notes")) || [];
-    const deletedNote = notes.splice(noteIndex, 1)[0];
-    localStorage.setItem("notes", JSON.stringify(notes));
-  
-    const deletedNotes = JSON.parse(localStorage.getItem("deletedNotes")) || [];
-    localStorage.setItem("deletedNotes", JSON.stringify([...deletedNotes, deletedNote]));
+  const handleImageClick = (src) => {
+    setViewingImage(src);
   };
-  
+
+  const closeImageViewer = () => {
+    setViewingImage(null);
+  };
+
   return (
     <div class="notes-container">
       {notes().length === 0 ? (
@@ -40,22 +60,70 @@ function NoteAdder() {
       ) : (
         notes().map((note, index) => (
           <div
-            class={`note-card ${note.pinned ? "pinned" : ""}`}
+            class="note-card"
             onMouseEnter={() => setHoveredNote(index)}
             onMouseLeave={() => setHoveredNote(null)}
           >
             {note.title && <h3 class="note-title">{note.title}</h3>}
-            <p class="note-content">{note.content}</p>
+            {editingNoteIndex() === index ? (
+              <textarea
+                class="note-edit-textarea"
+                value={editContent()}
+                onInput={(e) => setEditContent(e.target.value)}
+              />
+            ) : (
+              <p class="note-content">{note.content}</p>
+            )}
+
+            {note.image && (
+              <div class="note-image-container">
+                <img
+                  src={note.image}
+                  alt="Note content"
+                  class="note-image"
+                  onClick={() => handleImageClick(note.image)}
+                />
+              </div>
+            )}
+
+            {note.checklist && (
+              <ul class="note-checklist">
+                {note.checklist.map((item, idx) => (
+                  <li key={idx}>
+                    {item}
+                    <button
+                      onClick={() => {
+                        const updatedNotes = [...notes()];
+                        updatedNotes[index].checklist = updatedNotes[index].checklist.filter((_, i) => i !== idx);
+                        setNotes(updatedNotes);
+                        localStorage.setItem("notes", JSON.stringify(updatedNotes));
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <div class="note-actions">
-              <button
-                class={`note-action-button pin-button ${
-                  note.pinned ? "active" : ""
-                }`}
-                onClick={() => handlePin(index)}
-                title="Pin note"
-              >
-                <span class="material-symbols-outlined">push_pin</span>
-              </button>
+              {editingNoteIndex() === index ? (
+                <button
+                  class="note-action-button save-button"
+                  onClick={() => saveEdit(index)}
+                  title="Save changes"
+                >
+                  <span class="material-symbols-outlined">save</span>
+                </button>
+              ) : (
+                <button
+                  class="note-action-button edit-button"
+                  onClick={() => handleEdit(index)}
+                  title="Edit note"
+                >
+                  <span class="material-symbols-outlined">edit</span>
+                </button>
+              )}
               {hoveredNote() === index && (
                 <button
                   class="note-action-button delete-button"
@@ -68,6 +136,12 @@ function NoteAdder() {
             </div>
           </div>
         ))
+      )}
+
+      {viewingImage() && (
+        <div class="image-viewer" onClick={closeImageViewer}>
+          <img src={viewingImage()} alt="Full View" class="full-view-image" />
+        </div>
       )}
     </div>
   );

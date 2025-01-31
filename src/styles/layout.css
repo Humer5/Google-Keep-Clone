@@ -5,24 +5,25 @@
   flex-direction: column;
   height: 100vh;
   background-color: var(--layout-bg);
-  /* background-image: url(Google-Keep-Clone\src\assets\light_bulb.png); */
   color: var(--layout-text);
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* overflow: scroll; */
 }
 
 /* Content Wrapper (Sidebar + Main Content) */
 .content-wrapper {
   display: flex;
   flex-grow: 1;
-  overflow: hidden; /* Prevent overflow due to large content */
+  overflow: hidden; 
 }
+
 
 .main-content {
   padding: 16px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Spacing between NoteTextbox and children */
+  gap: 20px; 
 }
 
 /* Themes */

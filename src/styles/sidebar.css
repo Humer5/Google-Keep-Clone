@@ -1,23 +1,23 @@
 /* Sidebar Container */
 .sidebar-container {
   position: fixed;
-  top: 60px; 
+  top: 60px;
   left: 0;
-  height: calc(100% - 60px); /* Subtract navbar height to fill the rest of the screen */
-  width: 64px; /* Default collapsed width */
+  height: calc(100% - 60px); 
+  width: 64px; 
   background-color: var(--sidebar-bg);
   transition: width 0.3s ease;
   z-index: 999;
   margin-top: 10px;
-  border-right: 2px solid var(--sidebar-border); /* Solid border at the right end */
-  box-sizing: border-box; /* Ensure border doesn't affect the width */
-
+  border-right: 5px solid var(--sidebar-border); 
+  box-sizing: border-box; 
 }
 
 /* Sidebar Expanded on Hover */
 .sidebar-container:hover,
 .sidebar-container.expanded {
-  width: 250px; 
+  width: 250px;
+
 }
 
 /* Sidebar */
@@ -26,6 +26,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+
 }
 
 /* Sidebar Items */
@@ -46,9 +47,9 @@
 
 /* Active Sidebar Item */
 .sidebar-item.active {
-  background-color: rgb(254,239,195); 
+  background-color: rgb(254, 239, 195);
   color: #202124; /* Dark text for active state */
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 /* Sidebar Item Icons */
@@ -85,8 +86,6 @@
 
 /* Active state in Dark Mode */
 [data-theme="dark"] .sidebar-item.active {
-  background-color: rgb(65,51,28); /* Gold for dark mode active state */
+  background-color: rgb(65, 51, 28); /* Gold for dark mode active state */
   color: #e8eaed; /* Light text color in dark mode */
 }
-
-

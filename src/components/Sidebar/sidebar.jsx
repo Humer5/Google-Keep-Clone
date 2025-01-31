@@ -1,23 +1,31 @@
-import { createSignal } from "solid-js";
+import { createSignal, createEffect } from "solid-js";
 import "../../styles/sidebar.css";
 
-const Sidebar = ({isExpanded}) => {
+const Sidebar = ({ isExpanded, onItemClick }) => {
+  // Track the active item, persisting it in localStorage
   const [activeItem, setActiveItem] = createSignal(localStorage.getItem("activeItem") || "Notes");
 
+  // Handle sidebar item clicks
   const handleItemClick = (item) => {
-    setActiveItem(item);
-    localStorage.setItem("activeItem", item);
+    setActiveItem(item); // Update the active item
+    localStorage.setItem("activeItem", item); // Persist the active item
+    onItemClick(item); // Notify parent component of the active item
   };
 
+  // Update the parent with the active item on initial render
+  createEffect(() => {
+    onItemClick(activeItem());
+  });
+
   return (
-    // <div class="sidebar-container">
-       <div class={`sidebar-container ${isExpanded ? "expanded" : ""}`}>
+    <div class={`sidebar-container ${isExpanded ? "expanded" : ""}`}>
       <div class="sidebar">
+        {/* Sidebar Items */}
         <div
           class={`sidebar-item ${activeItem() === "Notes" ? "active" : ""}`}
           onClick={() => handleItemClick("Notes")}
         >
-          <span class="material-symbols-outlined">lightbulb_2</span>
+          <span class="material-symbols-outlined">lightbulb</span>
           <span class="item-label">Notes</span>
         </div>
         <div

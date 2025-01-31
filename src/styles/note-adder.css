@@ -1,88 +1,163 @@
 :root {
-  /* Light theme variables */
-  --bg-color: #fff;
-  --text-color: #000;
-  --note-bg-color: #fff;
-  --note-shadow: rgba(0, 0, 0, 0.2);
-  --hover-transform: translateY(-4px);
-  --pin-color: gold;
-  --empty-notes-color: #aaa;
-}
+  --bg-color-light: #ffffff;
+  --text-color-light: #000;
+  --note-bg-color-light: #ffffff;
+  --note-shadow-light: rgba(0, 0, 0, 0.1);
 
-[data-theme="dark"] {
-  /* Dark theme variables */
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-  --note-bg-color: #1e1e1e;
-  --note-shadow: rgba(255, 255, 255, 0.1);
-  --hover-transform: translateY(-4px);
-  --pin-color: #ffd700;
-  --empty-notes-color: #666;
+  --bg-color-dark: #121212;
+  --text-color-dark: #e0e0e0;
+  --note-bg-color-dark: #1e1e1e;
+  --note-shadow-dark: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
 }
 
 .notes-container {
-  display: flex;
-  flex-wrap: wrap;
+  padding: 16px;
+  display: grid;
+  margin-left: 150px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
-  padding-left: 100px;
 }
 
 .note-card {
-  background-color: var(--note-bg-color);
+  background-color: var(--note-bg-color-light);
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 1px 2px var(--note-shadow);
-  padding: 10px;
-  width: 240px;
+  box-shadow: 0 2px 4px var(--note-shadow-light);
+  padding: 12px;
   position: relative;
-  transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s ease-in-out;
+}
+
+[data-theme="dark"] .note-card {
+  background-color: var(--note-bg-color-dark);
+  box-shadow: 0 2px 4px var(--note-shadow-dark);
 }
 
 .note-card:hover {
-  transform: var(--hover-transform);
+  transform: translateY(-4px);
 }
 
 .note-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
 .note-content {
-  font-size: 14px;
-  margin-bottom: 16px;
-  overflow-x: hidden;
+  font-size: 16px;
+  color: #333;
+}
+
+[data-theme="dark"] .note-content {
+  color: var(--text-color-dark);
 }
 
 .note-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  margin-top: 8px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.note-card:hover .note-actions {
+  visibility: visible;
+  opacity: 1;
 }
 
 .note-action-button {
-  background: none;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  color: var(--text-color);
-  transition: color 0.3s;
+  color: #616161;
+  font-size: 20px;
+  margin-left: 8px;
 }
 
-.note-action-button.pin-button.active {
-  color: var(--pin-color);
+[data-theme="dark"] .note-action-button {
+  color: var(--text-color-dark);
 }
 
-.empty-notes {
-  display: block;
-  position: fixed;
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--empty-notes-color);
-  text-align: center;
+.note-action-button:hover {
+  color: #1976d2;
+}
+
+.note-edit-textarea {
   width: 100%;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  resize: none;
+}
+
+[data-theme="dark"] .note-edit-textarea {
+  background-color: var(--note-bg-color-dark);
+  color: var(--text-color-dark);
+  border: 1px solid var(--text-color-dark);
+}
+
+.note-image-container {
+  position: relative;
+  margin: 8px 0;
+}
+
+.note-image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.delete-image-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.note-card:hover .delete-image-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
+.delete-image-btn:hover {
+  background-color: #d32f2f;
+}
+
+.image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.full-view-image {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
 }

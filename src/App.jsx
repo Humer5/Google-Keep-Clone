@@ -1,22 +1,23 @@
 import { createSignal } from "solid-js";
+// import Login from "./components/Login/login";
 import Layout from "./components/Layout/layout";
 
 
 // Sample content for demonstration
 const App = () => {
-  const [notes, setNotes] = createSignal([
-    { id: 1, content: "First note", completed: false },
-    { id: 2, content: "Second note", completed: false },
-  ]);
-
+  // const [notes, setNotes] = createSignal([]);
+ 
+ 
   return (
+  <div>
+    {/* <Login/> */}
     <Layout>
       {/* Main Content Area */}
       <div class="notes-container">
         {/* Notes input box */}
         <div class="note-input">
           <textarea placeholder="Take a note..." />
-          <div class="note-actions">
+          {/* <div class="note-actions">
             <button>
               <span class="material-symbols-outlined">check_box</span>
             </button>
@@ -26,7 +27,7 @@ const App = () => {
             <button>
               <span class="material-symbols-outlined">image</span>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Notes list */}
@@ -46,6 +47,7 @@ const App = () => {
         </div>
       </div>
     </Layout>
+    </div>
   );
 };
 
