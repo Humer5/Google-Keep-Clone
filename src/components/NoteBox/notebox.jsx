@@ -83,13 +83,21 @@ function NoteBox() {
 
   const addChecklistItem = () => {
     if (newChecklistItem().trim()) {
-      setChecklistItems([...checklistItems(), newChecklistItem().trim()]);
+      setChecklistItems([...checklistItems(), { text: newChecklistItem().trim(), checked: false }]);
       setNewChecklistItem("");
     }
   };
 
   const removeChecklistItem = (index) => {
     setChecklistItems(checklistItems().filter((_, i) => i !== index));
+  };
+
+  const toggleChecklistItem = (index) => {
+    setChecklistItems(
+      checklistItems().map((item, i) =>
+        i === index ? { ...item, checked: !item.checked } : item
+      )
+    );
   };
 
   return (
@@ -144,9 +152,16 @@ function NoteBox() {
           </div>
           <ul>
             {checklistItems().map((item, index) => (
-              <li key={index}>
-                {item}
-                <button onClick={() => removeChecklistItem(index)}>Remove</button>
+              <li
+                key={index}
+                class={`checklist-item ${item.checked ? "checked" : ""}`}
+              >
+                <input
+                  type="checkbox"
+                  checked={item.checked}
+                  onChange={() => toggleChecklistItem(index)}
+                />
+                {item.text}
               </li>
             ))}
           </ul>

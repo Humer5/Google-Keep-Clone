@@ -161,3 +161,8 @@ body {
   max-height: 90%;
   border-radius: 8px;
 }
+/* Strikethrough text when checked */
+.checked-item {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

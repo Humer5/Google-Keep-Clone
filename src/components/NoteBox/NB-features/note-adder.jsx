@@ -53,6 +53,13 @@ function NoteAdder() {
     setViewingImage(null);
   };
 
+  const toggleChecklistItem = (noteIndex, itemIndex) => {
+    const updatedNotes = [...notes()];
+    updatedNotes[noteIndex].checklist[itemIndex].checked = !updatedNotes[noteIndex].checklist[itemIndex].checked;
+    setNotes(updatedNotes);
+    localStorage.setItem("notes", JSON.stringify(updatedNotes));
+  };
+
   return (
     <div class="notes-container">
       {notes().length === 0 ? (
@@ -89,8 +96,13 @@ function NoteAdder() {
             {note.checklist && (
               <ul class="note-checklist">
                 {note.checklist.map((item, idx) => (
-                  <li key={idx}>
-                    {item}
+                  <li key={idx} class={item.checked ? "checked-item" : ""}>
+                    <input
+                      type="checkbox"
+                      checked={item.checked}
+                      onChange={() => toggleChecklistItem(index, idx)}
+                    />
+                    {item.text}
                     <button
                       onClick={() => {
                         const updatedNotes = [...notes()];

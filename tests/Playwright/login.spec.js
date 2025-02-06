@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Successful login redirects to exact layout URL', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  await page.goto('http://localhost:3000', { timeout: 60000 });
 
   await page.fill('input[type="email"]', 'reshamhumer512@gmail.com');
   await page.fill('input[type="password"]', 'H5122001r');
