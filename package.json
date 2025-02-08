@@ -7,19 +7,25 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "vitest", 
+    "test:watch": "vitest watch" 
   },
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.1",
-    "vite": "^6.0.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "jsdom": "^26.0.0",
+    "solid-testing-library": "^0.5.1",
+    "vite": "^6.1.0",
     "vite-plugin-solid": "^2.11.0",
     "vitest": "^3.0.5"
   },
   "dependencies": {
     "@solidjs/router": "^0.15.3",
+    "@solidjs/testing-library": "^0.8.10",
     "solid-js": "^1.9.3",
-    "solid-testing-library": "^0.5.1"
+    "util.promisify": "^1.1.3"
   }
 }
