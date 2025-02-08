@@ -5,7 +5,6 @@ function NoteBox() {
   const [isExpanded, setIsExpanded] = createSignal(false);
   const [title, setTitle] = createSignal("");
   const [noteContent, setNoteContent] = createSignal("");
-  const [isPinned, setIsPinned] = createSignal(false);
   const [hoveredIcon, setHoveredIcon] = createSignal("");
   const [uploadedImage, setUploadedImage] = createSignal(null);
   const [isChecklist, setIsChecklist] = createSignal(false);
@@ -15,12 +14,11 @@ function NoteBox() {
   const [tooltips, setTooltips] = createSignal({
     check_box: "New list",
     image: "Add image",
-    // push_pin: "Pin note",
   });
 
   const handleExpand = () => setIsExpanded(true);
 
-  const handleCollapse = () => {
+  const handleAddContent = () => {
     if (
       title().trim() ||
       noteContent().trim() ||
@@ -33,7 +31,6 @@ function NoteBox() {
         content: noteContent().trim(),
         image: uploadedImage(),
         checklist: isChecklist() ? checklistItems() : null,
-        pinned: isPinned(),
       };
 
       const updatedNotes = [...notes, newNote];
@@ -43,10 +40,10 @@ function NoteBox() {
       window.dispatchEvent(new CustomEvent("notesUpdated", { detail: updatedNotes }));
     }
 
+    // Reset the fields after adding content
     setTitle("");
     setNoteContent("");
     setUploadedImage(null);
-    setIsPinned(false);
     setIsExpanded(false);
     setIsChecklist(false);
     setChecklistItems([]);
@@ -54,7 +51,7 @@ function NoteBox() {
 
   const handleOutsideClick = (event) => {
     if (!event.target.closest(".notebox-container")) {
-      handleCollapse();
+      setIsExpanded(false);
     }
   };
 
@@ -114,13 +111,6 @@ function NoteBox() {
             onInput={(e) => setTitle(e.target.value)}
             class="note-title"
           />
-          <button
-            class={`pin-note-button ${isPinned() ? "pinned" : ""}`}
-            onClick={() => setIsPinned(!isPinned())}
-            title={tooltips()["push_pin"]}
-          >
-            <span class="material-symbols-outlined">push_pin</span>
-          </button>
         </div>
       )}
       <textarea
@@ -196,8 +186,8 @@ function NoteBox() {
             ))}
           </>
         ) : (
-          <button class="close-btn" onClick={handleCollapse}>
-            Close
+          <button class="add-btn" onClick={handleAddContent}>
+            Add
           </button>
         )}
       </div>
