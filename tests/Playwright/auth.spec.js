@@ -16,7 +16,7 @@ test.describe('Authentication Tests', () => {
     await page.waitForURL('http://localhost:3000/layout', { timeout: 60000 });
   
     // Verify the final URL
-    expect(page.url()).toBe('http://localhost:3000/layout');
+    await expect(page.url()).toBe('http://localhost:3000/layout');
   });
   
   //  Test 2: Login with incorrect credentials
