@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("Theme toggle should switch between light and dark mode", async ({ page }) => {
   // Go to the page where the Navbar and theme toggle exists
-  await page.goto("http://localhost:3000/");
+  await page.goto("http://localhost:3000/layout");
 
   // Ensure that the theme is set to light by default if not already set
   const currentTheme = await page.evaluate(() => {
