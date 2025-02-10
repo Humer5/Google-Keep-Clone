@@ -1,6 +1,5 @@
-import { render, screen, fireEvent } from "solid-testing-library";
-import { createSignal } from "solid-js";
-import NoteBox from "../../src/components/NoteBox/notebox";
+import { render, screen } from "solid-testing-library";
+import NoteBox from "../../src/components/NoteBox/notebox"; 
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
 describe("NoteBox Component", () => {
@@ -9,10 +8,7 @@ describe("NoteBox Component", () => {
   beforeEach(() => {
     // Mock localStorage
     vi.spyOn(Storage.prototype, "setItem");
-    vi.spyOn(Storage.prototype, "getItem").mockReturnValue(JSON.stringify([
-      { id: 1, content: "First note" },
-      { id: 2, content: "Second note" }
-    ]));
+    vi.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
 
     // Create a reactive signal for notes
     [notes, setNotes] = createSignal([
@@ -20,7 +16,7 @@ describe("NoteBox Component", () => {
       { id: 2, content: "Second note" },
     ]);
 
-    render(() => <NoteBox />);
+    render(() => <NoteBox notes={notes()} setNotes={setNotes} />);
   });
 
   it("Should correctly render a list of notes", () => {

@@ -1,21 +1,19 @@
 import { test, expect } from '@playwright/test';
 
-test('Successful login redirects to exact layout URL', async ({ page }) => {
-  await page.goto('http://localhost:3000', { timeout: 60000 });
+test("should login successfully and navigate to layout page", async ({ page }) => {
+  // Step 1: Navigate to the login page
+  await page.goto("http://localhost:3000/"); // Update the URL if necessary
 
-  await page.fill('input[type="email"]', 'reshamhumer512@gmail.com');
-  await page.fill('input[type="password"]', 'H5122001r');
+  // Step 2: Fill in valid credentials
+  await page.fill('[placeholder="Enter your email"]', "reshamhhumer512@.com"); // Update with valid email
+  await page.fill('[placeholder="Enter your password"]', "H5122001r"); // Update with valid password
+
+  // Step 3: Click the login button
   await page.click('button[type="submit"]');
 
-  // Check if there's an error instead of redirecting
-  const errorMessage = await page.locator('.error'); // Adjust selector based on your app
-  if (await errorMessage.isVisible()) {
-    throw new Error("Login failed: " + await errorMessage.textContent());
-  }
+  // Step 4: Wait for the navigation to the layout page
+  await page.waitForURL("http://localhost:3000/layout"); // Update with your layout page URL
 
-  // Wait for navigation to layout
-  await page.waitForURL('http://localhost:3000/layout', { timeout: 60000 });
-
-  // Verify the final URL
-  expect(page.url()).toBe('http://localhost:3000/layout');
+  // Step 5: Verify that the layout page is displayed
+  await expect(page).toHaveURL('/layout'); // Check for a URL containing 'layout'
 });
