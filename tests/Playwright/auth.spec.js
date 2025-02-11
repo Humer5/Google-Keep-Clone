@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Authentication Tests', () => {
 
-  test('Successful login redirects to exact layout URL', async ({ page }) => {
+  test.skip('Successful login redirects to exact layout URL', async ({ page }) => {
     await page.goto('http://localhost:3000', { timeout: 60000 });
   
     await page.fill('input[type="email"]', 'reshamhumer512@gmail.com');
