@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-
+//Total 3 tests
 test.describe('Authentication Tests', () => {
 
   test.skip('Successful login redirects to exact layout URL', async ({ page }) => {
