@@ -9,4 +9,10 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupVitest.js',
+    css: false, // Ignore CSS in testing to prevent import errors
+  },
 });

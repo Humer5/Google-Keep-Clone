@@ -6,11 +6,11 @@ describe("NoteBox Component", () => {
   let notes, setNotes;
 
   beforeEach(() => {
-    // Mock localStorage
+    
     vi.spyOn(Storage.prototype, "setItem");
     vi.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
 
-    // Create a reactive signal for notes
+    
     [notes, setNotes] = createSignal([
       { id: 1, content: "First note" },
       { id: 2, content: "Second note" },
