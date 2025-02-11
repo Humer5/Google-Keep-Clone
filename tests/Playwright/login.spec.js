@@ -5,7 +5,7 @@ test("should login successfully and navigate to layout page", async ({ page }) =
   await page.goto("http://localhost:3000/"); // Update the URL if necessary
 
   // Step 2: Fill in valid credentials
-  await page.fill('[placeholder="Enter your email"]', "reshamhhumer512@.com"); // Update with valid email
+  await page.fill('[placeholder="Enter your email"]', "reshamhumer512@.com"); // Update with valid email
   await page.fill('[placeholder="Enter your password"]', "H5122001r"); // Update with valid password
 
   // Step 3: Click the login button

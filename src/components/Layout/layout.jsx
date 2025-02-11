@@ -8,46 +8,29 @@ import "../../styles/layout.css";
 
 const Layout = () => {
   const [isSidebarExpanded, setIsSidebarExpanded] = createSignal(false);
-  const [activeSection, setActiveSection] = createSignal("Notes"); // Active sidebar section
-
-  const toggleSidebar = () => {
-    setIsSidebarExpanded(!isSidebarExpanded());
-  };
+  const [activeSection, setActiveSection] = createSignal("Notes"); 
 
   const renderContent = () => {
-    switch (activeSection()) {
-      case "Notes":
-        return (
-          <>
-          <NoteAdder />
-          </>
-        );
-      case "Reminders":
-        return  <p>Notes with Upcoming Reminders come here.</p>;
-      case "Archive":
-        return <p>Your Archived notes appear here.</p>;
-      case "Bin":
-        return <p>No notes in Recycle Bin.</p>;
-      default:
-        return <p>Select a section from the sidebar.</p>;
-    }
+    const section = activeSection();
+    return section === "Notes" ? <NoteAdder /> :
+           section === "Reminders" ? <p>Notes with Upcoming Reminders come here.</p> :
+           section === "Archive" ? <p>Your Archived notes appear here.</p> :
+           section === "Bin" ? <p>No notes in Recycle Bin.</p> :
+           <p>Select a section from the sidebar.</p>;
   };
 
   return (
     <div class="layout-container">
       {/* Navbar */}
-      <Navbar onMenuClick={toggleSidebar} />
+      <Navbar onMenuClick={() => setIsSidebarExpanded(!isSidebarExpanded())} />
 
       <div class="content-wrapper">
         {/* Sidebar */}
-        <Sidebar
-          isExpanded={isSidebarExpanded()}
-          onItemClick={setActiveSection} // Update active section
-        />
+        <Sidebar isExpanded={isSidebarExpanded()} onItemClick={setActiveSection} />
 
         {/* Main Content */}
         <main class="main-content">
-        <NoteBox />
+          <NoteBox />
           {renderContent()}
         </main>
       </div>
